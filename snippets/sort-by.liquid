@@ -1,0 +1,17 @@
+<label for="sort-by" class="sort-by__label">
+    <div class="sort-by__select-container">
+        <select class="sort-toolbar__input hidden" name="SortBy" id="sort-by" aria-describedby="a11y-refresh-page-message a11y-selection-message">
+            <option value="{{ collection.url }}">Sort</option>
+            {% for option in collection.sort_options %}
+        
+                <option value="{{ shop.url }}{{ collection.url }}?sort_by={{ option.value }}">
+                    {{ option.name | upcase }}
+                </option>
+        
+            {% endfor %}
+            
+        </select>
+        {% include 'icon-chevron-down' %}
+    </div>
+</label>
+

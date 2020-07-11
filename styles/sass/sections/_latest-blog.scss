@@ -1,0 +1,85 @@
+.latest-blog {
+	&__container {
+		background-color: $color-white;
+		margin: 5rem 0;
+		padding: 5rem;
+
+		@include respond-950 {
+			padding: 5rem 3rem;
+		}
+
+		@include respond-480 {
+			padding: 2rem 2rem 3rem;
+			margin: 0;
+		}
+	}
+
+	&__heading {
+		color: $color-title;
+		font-family: $font-body-2;
+		font-size: .6rem;
+		letter-spacing: .1rem;
+		text-transform: uppercase;
+	}
+
+	&__title {
+		display: inline-block;
+		color: $color-body-text;
+		font-family: $font-body;
+		font-size: 2rem;
+		padding: 1rem 0;
+		transition: .2s all;
+
+		&:hover {
+			color: $color-hover;
+		}
+
+		@include respond-480 {
+			font-size: 1rem;
+		}
+	}
+
+	&__excerpt {
+		font-family: $font-body;
+		line-height: 1.4rem;
+		margin-bottom: 1rem;
+
+		@include respond-480 {
+			font-size: .9rem;
+		}
+	}
+
+	&__excerpt a {
+		color: $color-title;
+	}
+
+	&__img {
+		width: 100%;
+	}
+
+	&__read-more {
+		max-width: 150px;
+	}
+
+	&__read-more-btn {
+		border: 2px solid $color-body-text;
+		font-family: $font-body-2;
+		font-size: .5rem;
+		font-weight: bolder;
+		letter-spacing: .05rem;
+		text-transform: uppercase;
+		color: $color-body-text;
+		padding: .7rem 1rem;
+		transition: .2s all;
+
+		&:hover {
+			border: 2px solid $color-hover-3;
+			background-color: $color-hover-3;
+			color: $color-white;
+		}
+	}
+
+	&__image {
+		margin-top: 2rem;
+	}
+}

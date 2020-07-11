@@ -1,0 +1,178 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+
+<div class="product wrapper wrapper-5">
+  <div class="product__text">
+    <div class="product__text-info">
+      {% for tag in product.tags %}
+      <p class="product__text-tag">
+        {{ tag | upcase }}
+      </p>
+      {% endfor %}
+      <h1 class="product__text-title">{{ product.title }}</h1>
+    </div>
+    <div class="product__text-description">
+      <p>
+        {{ product.description }}
+      </p>
+    </div>
+  </div>
+  <div class="product__info">
+    <div class="product__info-image">
+      <img 
+      src="{{ featured_image | img_url: 'master' }}" 
+      alt="{{ featured_image.alt | escape }}" 
+      id="ProductPhotoImg"
+      class="product__info-img"
+      >
+    </div>
+    <form 
+    class="product__info-form"
+    action="/cart/add" 
+    method="post" 
+    enctype="multipart/form-data" 
+    id="AddToCartForm"
+    >
+      <select class="product__info-form-select" name="id" id="productSelect">
+        {% for variant in product.variants %}
+          {% if variant.available %}
+            <option value="{{ variant.id }}">
+              {{ variant.title }} - {{ variant.price | money_with_currency }}
+            </option>
+          {% else %}
+            <option disabled="disabled">
+              {{ variant.title }} - sold out
+            </option>
+          {% endif %}
+        {% endfor %}
+      </select>
+      <label class="product__info-form-price">
+        <span>
+          <b>{{ product.type }}</b>
+        </span>
+        <span>
+          {% for variant in product.variants %}
+          {% if variant.available %}
+          <b>
+          {{ variant.price | money_with_currency }}
+          </b>
+          {% else %}
+              <b>
+              {{ 'products.product.sold_out' | t }}
+              </b>
+          {% endif %}
+        {% endfor %}
+        </p>
+      </label>
+      <div class="product__info-form-control">
+        <div class="product__info-form-item"
+          {%- if section.settings.enable_payment_button %} product-form__item--payment-button {%- endif -%}
+          {%- if product.has_only_default_variant %} product-form__item--no-variants {%- endif -%}"
+        >
+          <button
+            class="product__info-form-button btn"
+            type="submit"
+            name="add"
+              {% unless current_variant.available %} aria-disabled="true"{% endunless %}
+              aria-label="{% unless current_variant.available %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endunless %}"
+              <span>
+                {% unless current_variant.available %}
+                  {{ 'products.product.sold_out' | t }}
+                {% else %}
+                  {{ 'products.product.add_to_cart' | t }}
+                {% endunless %}
+              </span>
+          </button>
+        <div class="product__info-form-shopping-button">
+            <a 
+            class="product__info-form-shopping-link"
+            href="{{ routes.all_products_collection_url }}"
+            >
+            Continue Shopping
+            </a>
+        </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product pages",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_quantity_selector",
+      "label": "Show quantity selector",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_variant_labels",
+      "label": "Show variant labels",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_payment_button",
+      "label": "Show dynamic checkout button",
+      "info": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share_buttons",
+      "label": "Show social sharing buttons",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Media",
+      "info": "Learn more about [media types](https://help.shopify.com/manual/products/product-media)"
+    },
+    {
+      "type": "select",
+      "id": "media_size",
+      "label": "Size",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "full",
+          "label": "Full-width"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_image_zoom",
+      "label": "Enable image zoom",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_looping",
+      "label": "Enable video looping",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

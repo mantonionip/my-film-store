@@ -1,0 +1,84 @@
+.privacy-policy {
+	background-color: $color-white;
+	margin-top: 2rem;
+	margin-bottom: 5rem;
+
+	@include respond-480 {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	&__container {
+		padding: 5rem;
+
+		@include respond-950 {
+			padding: 5rem 3rem;
+		}
+
+		@include respond-480 {
+			padding: 3rem 2rem;
+        }
+        
+        @include respond-590 {
+			padding: 2rem 1.5rem;
+		}
+
+		@include respond-480 {
+			padding: 1.5rem 1.5rem 5rem;
+		}
+	}
+
+	&__title {
+		font-family: $font-body-2;
+		font-size: 2.5rem;
+		letter-spacing: .1rem;
+		text-align: center;
+		text-transform: uppercase;
+		padding-bottom: 5rem;
+
+		@include respond-950 {
+            font-size: 2rem;
+            padding-bottom: 2rem;
+        }
+        
+        @include respond-768 {
+            font-size: 1.6rem;
+            padding-bottom: 2rem;
+        }
+        
+        @include respond-480 {
+			font-size: 1.2rem;
+		}
+	}
+
+	strong,
+	span {
+		font-family: $font-body;
+	}
+
+	Strong {
+		font-weight: 700;
+		font-size: 1.5rem;
+		margin-bottom: 2rem;
+
+		@include respond-950 {
+			font-size: 1.2rem;
+		}
+
+		@include respond-480 {
+			font-size: 1rem;
+		}
+
+		@include respond-400 {
+			font-size: .8rem;
+		}
+	}
+
+	span {
+		line-height: 1.4rem;
+
+		@include respond-480 {
+			font-size: .9rem;
+		}
+	}
+}

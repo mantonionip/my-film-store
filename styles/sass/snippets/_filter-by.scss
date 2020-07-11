@@ -1,0 +1,53 @@
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	text-indent: 1px;
+	text-overflow: '';
+	border:0px;
+   	outline:0px;
+}
+
+.filters-toolbar {
+	&__input-wrapper {
+		position: relative;
+
+		&:hover svg {
+			fill: $color-white;
+		}
+	}
+
+	&__input-wrapper svg {
+		position: absolute;
+		top: 30%;
+		right: 10%;
+		cursor: pointer;
+		transition: .2s all;
+	}
+
+	&__input {
+		font-family: $font-body-2;
+		font-size: .7rem;
+		font-weight: bold;
+		text-transform: uppercase;
+		border-radius: 0;
+		height: 2.5rem;
+		padding: 0 0 0 1.5rem;
+		cursor: pointer;
+		width: 300px;
+		transition: .2s all;
+
+		&:hover {
+			background-color: $color-hover-3;
+			color: $color-white;
+		}
+
+		@include respond-860 {
+			width: 100%;
+		}
+
+		@include respond-400 {
+			font-size: .6rem;
+		}
+	}
+}
+

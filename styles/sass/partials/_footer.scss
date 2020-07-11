@@ -1,0 +1,126 @@
+.footer {
+	&__container {
+		padding: 5rem 0;
+	}
+
+	&__logo-container {
+
+		@include respond-630 {
+			margin-bottom: 2rem;
+		}
+	}
+
+	&__logo-link {
+		display: inline-block;
+	}
+
+	&__logo-image {
+		width: 70px;
+
+		@include respond-768 {
+			width: 50px;
+		}
+	}
+
+	&__bottom-side {
+		display: flex;
+		justify-content: space-between;
+
+		@include respond-630 {
+			flex-direction: column;
+		}
+	}
+
+	&__social-container {
+		align-self: flex-end;
+
+		@include respond-630 {
+			order: 2;
+			width: 100%;
+			margin-top: 2rem;
+		}
+	}
+
+	&__social-title {
+		color: $color-white;
+		font-family: $font-body-2;
+		font-size: .7rem;
+		text-transform: uppercase;
+	}
+
+	&__social-list {
+		display: flex;
+		padding-top: .7rem;
+	}
+
+	&__social-items {
+		font-size: 1.4rem;
+		padding-right: 2rem;
+		scale: 1;
+		transition: .4s all;
+
+		&:hover {
+			scale: 1.2;
+		}
+
+		@include respond-630 {
+			font-size: 1rem;
+		}
+	}
+
+	&__page-links {
+		display: flex;
+		flex-direction: column;
+
+		@include respond-630 {
+			order: 1;
+		}
+	}
+
+	&__collection-list {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__collection-title {
+		color: $color-white;
+		font-family: $font-body;
+		font-size: 1.2rem;
+		margin-bottom: .8rem;
+	}
+
+	&__collection-item {
+		color: $color-subtitle;
+		font-family: $font-body-2;
+		font-size: .7rem;
+		letter-spacing: .05rem;
+		line-height: 1.4rem;
+		text-transform: uppercase;
+		transition: .2s all;
+
+		&:hover {
+			color: $color-white;
+		}
+	}
+
+	&__terms {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		margin-top: 2rem;
+	}
+
+	&__terms-link {
+		color: $color-white;
+		font-family: $font-body;
+		font-size: 1.2rem;
+		letter-spacing: .05rem;
+		padding-top: .5rem;
+		transition: .2s all;
+		width: fit-content;
+
+		&:hover {
+			color: $color-links;
+		}
+	}
+}

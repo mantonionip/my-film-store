@@ -1,0 +1,165 @@
+<div class="page-banner wrapper">
+  {% comment %} <a href="{{ product.url | within: collection }}" class="page-banner__link"> {% endcomment %}
+      <h1 class="page-banner__title">{{ collection.title }}</h1>
+  {% comment %} </a> {% endcomment %}
+</div>
+<div class="all-films-collection wrapper wrapper-6">
+  <div class="all-films-collection__filters wrapper wrapper-6">
+    <div class="all-films-collection__filters-results">
+        <span class="results">
+        <b class="results__bold">{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</b>
+        </span>
+    </div>
+    <div class="all-films-collection__filters-container">
+      <!-- filter-by snippet | filter products by tags -->
+      {% if section.settings.tags_enable %}
+        <div class="all-films-collection__filters-filter">
+            {% if collection.all_tags.size > 0 %}
+                <button 
+                type="button" 
+                class="all-films-collection__filter-button"
+                aria-expanded="false"
+                >
+                {% include 'filter-by' %}
+                </button>
+            {% endif %}
+        </div>
+      {% endif %}
+      <!-- sort-by snippet | sort products -->
+      {% if section.settings.sort_enable %}
+        <div class="all-films-collection__filters-sort">
+            <button 
+            type="button"
+            class="all-films-collection__sort-button"
+            >
+            {% include 'sort-by' %}
+            </button>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="all-films-collection__container wrapper wrapper-6">
+      {% paginate collection.products by 40 %}
+      <!-- products in collection for loop -->
+      <ul class="all-films-collection__items">
+          {% for product in collection.products %}
+              <a 
+              class="all-films-collection__item"
+              href="{{ product.url | within: collection }}"
+              >
+                  <div class="all-films-collection__info-container">
+                    {% if product.featured_image != blank %}
+                        <li
+                        class="all-films-collection__item-image-container"
+                        >
+                            <img 
+                            src="{{ product.featured_image.src | img_url: 'master' }}" 
+                            alt="{{ product.featured_image.alt | escape }}"
+                            class="all-films-collection__item-img"
+                            >
+                        </li>
+                    {% endif %}
+                    <div class="all-films-collection__item-text">
+                      <p 
+                      class="all-films-collection__item-title"
+                      >
+                      <b>{{ product.title }}</b>
+                      </p>
+                      {% for tag in product.tags %}
+                      <p class="all-films-collection__item-tag">
+                        {{ tag }}
+                      </p>
+                      {% endfor %}
+                    {% unless product.available %}
+                    <p class="all-films-collection__item-sold-out">
+                      {{ 'products.product.sold_out' | t }}
+                    </p>
+                    {% endunless %}
+                    </div>
+                </div>
+              </a>
+          {% else %}
+              <p>{{ 'collections.general.no_matches' | t }}</p>
+          {% endfor %}
+      </ul>
+  
+      {% if paginate.pages > 1 %}
+        <div class="pagination__container">
+              <ul class="pagination__list">
+                <li class="pagination__item">
+                  {{ paginate | default_pagination: next: '>', previous: '<' }}
+                </li>
+              </ul>
+        </div>
+      {% endif %}
+  
+      {% endpaginate %}
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Collection pages",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "default": "grid",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "list",
+          "label": "List"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "grid",
+      "label": "Products per row (grid only)",
+      "default": 4,
+      "min": 2,
+      "max": 5,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "rows",
+      "label": "Rows per page (grid only)",
+      "default": 2,
+      "min": 2,
+      "max": 8,
+      "step": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "label": "Show collection image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show product vendors",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "sort_enable",
+      "label": "Enable sorting",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "tags_enable",
+      "label": "Enable tag filtering",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

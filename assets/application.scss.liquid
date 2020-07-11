@@ -1,0 +1,39 @@
+
+// put your styles here
+
+/*================= Typography ==================*/
+
+
+{{ settings.font_heading | font_face }}
+{{ settings.font_body | font_face }}
+
+{%- assign font_body_bold = settings.font_body | font_modify: 'weight', 'bolder' -%}
+{%- assign font_body_bold_italic = font_body_bold | font_modify: 'style', 'italic' -%}
+
+{{ font_body_bold | font_face }}
+{{ font_body_bold_italic | font_face }}
+
+body {
+   background: #{'{{ settings.color_main_bg }}'};
+   color: #{'{{ settings.color_body_text }}'};
+   font-family: #{'{{ settings.font_heading }}'};
+}
+
+.fab {
+   color: #{'{{ settings.color_footer_icons }}'};
+}
+
+footer {
+   background: #{'{{ settings.color_footer_bg }}'};
+}
+
+// .tag-yellow {
+//    &::before {
+//       content: '';
+//       width: 30px;
+//       height: 30px;
+//       background-color: yellow;
+//       display: block;
+//       border-radius: 50%;
+//    }
+// }

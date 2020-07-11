@@ -1,0 +1,525 @@
+// Styles for when cart has items in
+.full-cart {
+	&__title {
+		font-family: $font-body-2;
+		font-size: 2rem;
+		letter-spacing: .1rem;
+		text-transform: uppercase;
+		margin-top: 5rem;
+
+		@include respond-910 {
+			padding-left: 3rem;
+		}
+
+		@include respond-480 {
+			font-size: 1.6rem;
+			padding-left: 1rem;
+			margin-top: 3rem;
+			text-align: center;
+		}
+	}
+
+	&__form {
+		background-color: $color-white;
+		margin: 5rem 0;
+		padding: 5rem;
+
+		@include respond-1140 {
+			padding: 0;
+		}
+
+		@include respond-480 {
+			padding: 0;
+			margin: 3rem 0 0;
+		}
+	}
+
+	&__container {
+		background-color: $color-body;
+		padding: 3rem;
+
+		@include respond-1140 {
+			background-color: $color-white;
+		}
+
+		@include respond-480 {
+			padding: 1rem;
+		}
+	}
+
+	&__item-count {
+		margin-bottom: 3rem;
+	}
+
+	&__item-count-text {
+		font-family: $font-body-2;
+		font-size: .7rem;
+		font-weight: bold;
+		text-transform: uppercase;
+
+		@include respond-480 {
+			padding-top: 1rem;
+		}
+	}
+
+	&__items {
+		border-bottom: 2px solid $color-white;
+		display: flex;
+		flex-direction: column;
+
+		@include respond-1140 {
+			border-bottom: 2px solid $color-body;
+		}
+	}
+
+	&__item {
+		border-top: 2px solid $color-white;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		align-content: flex-start;
+		padding: 2rem 0;
+
+		@include respond-1140 {
+			border-top: 2px solid $color-body;
+		}
+
+		@include respond-860 {
+			flex-direction: column;
+		}
+	}
+
+	&__item-description {
+		display: flex;
+		align-items: center;
+		align-content: flex-start;
+		margin: 0;
+		max-width: none;
+		width: 50%;
+
+		@include respond-860 {
+			align-self: start;
+			align-items: flex-start;
+			width: 100%;
+		}
+	}
+
+	&__item-choices {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: baseline;
+		align-content: flex-start;
+		max-width: 400px;
+		width: 50%;
+
+		@include respond-860 {
+			justify-content: flex-start;
+			max-width: max-content;
+			width: 100%;
+			margin-left: auto;
+			margin-top: 2rem;
+		}
+	}
+
+	&__footer {
+		margin: 4rem 0 2rem;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: flex-start;
+
+		@include respond-860 {
+			flex-direction: column;
+		}
+	}
+
+	&__help {
+		width: 50%;
+
+		@include respond-860 {
+			width: 100%;
+			order: 2;
+			margin-top: 2rem;
+		}
+	}
+
+	&__totals {
+		width: 40%;
+
+		@include respond-860 {
+			width: 100%;
+			order: 1;
+		}
+	}
+
+	&__subtotal {
+		border-bottom: 2px solid $color-white;
+		display: flex;
+		justify-content: space-between;
+		padding-bottom: .5rem;
+	}
+
+	&__price-info {
+		padding-top: 1rem;
+	}
+
+	&__shipping,
+	&__tax,
+	&__credits,
+	&__es-total {
+		font-family: $font-body-2;
+		font-weight: bold;
+		display: flex;
+		justify-content: space-between;
+		text-transform: uppercase;
+	}
+
+	&__shipping,
+	&__tax,
+	&__credits {
+		font-size: .7rem;
+	}
+
+	&__tax,
+	&__credits,
+	&__es-total {
+		padding-top: .5rem;
+	}
+
+	&__submit {
+		font-family: $font-body-2;
+		display: flex;
+		flex-direction: column;
+		margin-top: 2rem;
+	}
+}
+
+.item {
+	&__image {
+		padding-right: 3.5rem;
+		width: 60%;
+
+		@include respond-860 {
+			padding-right: 2.5rem;
+			width: 40%;
+		}
+
+		@include respond-590 {
+			padding-right: 1.5rem;
+		}
+	}
+
+	&__img {
+		max-width: 100%;
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+
+		@include respond-860 {
+			padding-top: 2rem;
+		}
+	}
+
+	&__title-name {
+		color: $color-title;
+		font-family: $font-body-2;
+		font-size: .7rem;
+		font-weight: bold;
+		transition: .4s all;
+
+		&:hover {
+			color: $color-hover-3;
+		}
+	}
+
+	&__type {
+		font-family: $font-body-2;
+		font-size: .8rem;
+	}
+
+	&__qty {
+		display: flex;
+		align-items: center;
+	}
+
+	&__qty-label {
+		color: $color-subtitle;
+		font-family: $font-body-2;
+		font-size: .6rem;
+		font-weight: bold;
+		text-transform: uppercase;
+		padding-right: .2rem;
+
+		@include respond-860 {
+			font-size: .4rem;
+		}
+	}
+
+	&__qty-input {
+		border: 2px solid $color-body;
+		color: $color-hover-3;
+		font-family: $font-body-2;
+		font-size: .6rem;
+		font-weight: bold;
+		text-align: center;
+		width: 32px;
+		height: 24px;
+
+		@include respond-480 {
+			font-size: .5rem;
+		}
+	}
+
+	&__update {
+		color: $color-subtitle;
+		display: flex;
+		align-items: center;
+		padding: 0;
+
+		@include respond-860 {
+			padding-left: .5rem;
+			padding-right: .5rem;
+		}
+	}
+
+	&__button {
+		border: none;
+		background-color: transparent;
+		color: $color-subtitle;
+		cursor: pointer;
+		font-family: $font-body-2;
+		font-size: .7rem;
+		font-weight: bold;
+		text-transform: uppercase;
+		transition: .4s all;
+
+		&:hover {
+			color: $color-hover-3;
+		}
+
+		@include respond-480 {
+			font-size: .5rem;
+		}
+	}
+
+	&__remove-button {
+		color: $color-subtitle;
+		transition: .4s all;
+
+		&:hover {
+			color: $color-hover-3;
+		}
+	}
+
+	&__update-span {
+		padding: 0 .5rem;
+	}
+
+	&__price {
+		font-family: $font-body-2;
+		font-size: .8rem;
+		font-weight: bold;
+
+		@include respond-480 {
+			font-size: .6rem;
+		}
+	}
+}
+
+.help {
+	&__title {
+		font-family: $font-body-2;
+		font-size: .7rem;
+		font-weight: bold;
+		letter-spacing: .1rem;
+		text-transform: uppercase;
+	}
+
+	&__text {
+		font-family: $font-body;
+		line-height: 1.4rem;
+		padding: .5rem 0 1rem;
+
+		@include respond-480 {
+			font-size: .9rem;
+		}
+	}
+
+	&__link {
+		color: $color-title;
+		transition: .4s all;
+
+		&:hover {
+			color: $color-hover-3;
+		}
+	}
+
+	&__button {
+		max-width: 150px;
+	}
+
+	&__button-link {
+		border: 2px solid $color-white;
+		display: block;
+		color: $color-body-text;
+		font-family: $font-body-2;
+		font-size: .5rem;
+		font-weight: bolder;
+		letter-spacing: .05rem;
+		text-align: center;
+		text-transform: uppercase;
+		padding: 1rem;
+		transition: .2s all;
+
+		&:hover {
+			background-color: $color-hover-3;
+			border: 2px solid $color-hover-3;
+			color: $color-white;
+		}
+
+		@include respond-1110 {
+			border: 2px solid $color-body;
+		}
+	}
+}
+
+.subtotal {
+	&__title {
+		font-family: $font-body-2;
+		font-size: .7rem;
+		font-weight: bolder;
+		text-transform: uppercase;
+	}
+
+	&__price {
+		font-family: $font-body-2;
+		font-size: .7rem;
+		font-weight: bold;
+	}
+}
+
+.es-total {
+	&__price {
+		color: $color-checkout;
+
+		@include respond-400 {
+			font-size: .9rem;
+		}
+	}
+
+	&__title {
+		@include respond-400 {
+			font-size: .9rem;
+		}
+	}
+}
+
+.submit {
+	&__checkout-button,
+	&__shopping-button {
+		border: none;
+		font-size: .6rem;
+		font-weight: bold;
+		letter-spacing: .05rem;
+		text-transform: uppercase;
+		height: 3rem;
+		cursor: pointer;
+		transition: .2s all;
+
+		&:hover {
+			background-color: $color-hover-3;
+		}
+	}
+
+	&__checkout-button {
+		background-color: $color-checkout;
+		color: $color-white;
+		margin-bottom: 1rem;
+	}
+
+	&__shopping-button {
+		border: 2px solid $color-white;
+		color: $color-body-text;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		&:hover {
+			border: 2px solid $color-hover-3;
+			color: $color-white;
+		}
+
+		@include respond-1140 {
+			border: 2px solid $color-body;
+		}
+	}
+}
+
+// Styles for the empty cart
+.empty-cart {
+	background-color: $color-white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 5rem;
+	height: 25rem;
+
+	@include respond-480 {
+		margin-bottom: 0;
+	}
+
+	&__title {
+		font-family: $font-body-2;
+		font-size: .8rem;
+		letter-spacing: .1rem;
+		padding-top: 4rem;
+		text-transform: uppercase;
+
+		@include respond-630 {
+			font-size: .6rem;
+		}
+	}
+
+	&__text {
+		font-family: $font-body;
+		font-size: 2rem;
+		letter-spacing: .1rem;
+		padding-top: 2rem;
+
+		@include respond-630 {
+			font-size: 1.6rem;
+		}
+
+		@include respond-480 {
+			font-size: 1.4rem;
+		}
+	}
+
+	&__link {
+		background-color: $color-title;
+		color: $color-white;
+		font-family: $font-body-2;
+		font-size: .7rem;
+		letter-spacing: .1rem;
+		margin-top: 3rem;
+		padding: 1rem 8rem;
+		text-transform: uppercase;
+		transition: .5s all;
+
+		&:hover {
+			background-color: $color-hover-3;
+		}
+
+		@include respond-630 {
+			font-size: .6rem;
+			padding: 1rem 6rem;
+		}
+
+		@include respond-480 {
+			padding: 1rem 3rem;
+		}
+	}
+}

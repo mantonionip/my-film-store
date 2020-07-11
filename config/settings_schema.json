@@ -1,0 +1,99 @@
+[
+	{
+		"name": "theme_info",
+		"theme_name": "Themekit template theme",
+		"theme_version": "1.0.0",
+		"theme_author": "Shopify",
+		"theme_documentation_url": "https://github.com/Shopify/themekit",
+		"theme_support_url": "https://github.com/Shopify/themekit/issues"
+	},
+	{
+		"name": "Colors",
+		"settings": [
+			{
+				"type": "color",
+				"id": "color_accent",
+				"label": "Accent",
+				"default": "#c4cdd5",
+				"info": "Buttons and special ornaments"
+			},
+			{
+				"type": "color",
+				"id": "color_body_text",
+				"label": "Text",
+				"default": "#161d25"
+			},
+			{
+				"type": "color",
+				"id": "color_main_bg",
+				"label": "Background",
+				"default": "#fff"
+			},
+			{
+				"type": "color",
+				"id": "color_primary",
+				"label": "Main Brand Color"
+			},
+			{
+				"type": "color",
+				"id": "color_accent_1",
+				"label": "Accent Color 1",
+				"info": "1 of 2 Accent Colors for Page Elements"
+			},
+			{
+				"type": "color",
+				"id": "color_accent_2",
+				"label": "Accent Color 2",
+				"info": "2 of 2 Accent Colors for Page Elements"
+			},
+			{
+				"type": "header",
+				"content": "Footer"
+			},
+			{
+				"type": "paragraph",
+				"content": "Select Colors For The Footer"
+			},
+			{
+				"type": "color",
+				"id": "color_footer_icons",
+				"label": "Footer Icon Color",
+				"default": "#979797"
+			},
+			{
+				"type": "color",
+				"id": "color_footer_bg",
+				"label": "Footer Background Color",
+				"default": "#000"
+			}
+		]
+	},
+	{
+		"name": "Typography",
+		"settings": [
+			{
+				"type": "font_picker",
+				"id": "font_heading",
+				"default": "helvetica_n4",
+				"label": "Headings"
+			},
+			{
+				"type": "font_picker",
+				"id": "font_body",
+				"default": "helvetica_n4",
+				"label": "Body text"
+			}
+		]
+	},
+	{
+		"name": "Favicon",
+		"settings": [
+			{
+				"type": "image_picker",
+				"id": "favicon",
+				"label": "Favicon image",
+				"info": "Will be scaled down to 32 x 32px"
+			}
+		]
+	}
+]

@@ -1,0 +1,84 @@
+<div class="footer__container wrapper wrapper-3">
+    <div class="footer__logo-container">
+        <a href="{{ shop.url }}" class="footer__logo-link">
+            <img src="{{ section.settings.footer_logo | img_url: 'small' }}" alt="{{section.settings.footer_logo.alt}}" class="footer__logo-image">
+        </a>
+    </div>
+
+    <div class="footer__bottom-side">
+        <div class="footer__social-container">
+            <h3 class="footer__social-title">{{ section.settings.footer_social_title }}</h3>
+        
+            <ul class="footer__social-list">
+                {% for block in section.blocks %}
+                    <li class="footer__social-items">
+                        {% if block.type == "text" %}
+                            <a 
+                            href="{{ block.settings.social_link }}" target="_blank"
+                            class="social__item"
+                            >
+                                {{ block.settings.social_icon }}
+                            </a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="footer__page-links">
+            <div class="footer__collection-list">
+                <h3 class="footer__collection-title">Shop the Collection<h3>
+                {% for collection in collections %}
+                    <div>
+                        <a
+                        href="{{ collection.url }}"class="footer__collection-item"
+                        >
+                        {{ collection.title }}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="footer__terms">
+                {% for link in linklists.footer.links %}
+                    <a href="{{ link.url }}" class="footer__terms-link">{{ link.title }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "Footer",
+        "class": "footer-section",
+        "tag": "footer",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "footer_logo",
+                "label": "Footer Logo"
+            },
+            {
+                "type": "text",
+                "id": "footer_social_title",
+                "label": "Title displayed above footer social links"
+            }
+        ],
+        "blocks": [
+            {
+                "type": "text",
+                "name": "Social Link",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "social_icon",
+                        "label": "Social Icon"
+                    }, {
+                        "type": "url",
+                        "id": "social_link",
+                        "label": "Social Link"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %} 

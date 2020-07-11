@@ -1,0 +1,71 @@
+{% assign blog = blogs[section.settings.blog] %}
+
+<section class="latest-blog wrapper wrapper-2">
+    <div class="latest-blog__container">
+        {% for article in blog.articles limit: 1 %}
+            <div class="latest-blog__text">
+                <h2 class="latest-blog__heading">{{ section.settings.section_label }}</h2>
+                <a href="{{ article.url }}">
+                    <h3 class="latest-blog__title">{{ article.title }}</h3>
+                </a>
+                {% if article.excerpt.size > 0 %}
+                <p class="latest-blog__excerpt">
+                    {{ article.excerpt }}
+                </p>
+                {% else %}
+                <p>
+                    {{ article.content | strip_html | truncate: 150 }}
+                </p>
+                {% endif %}
+                <ul class="latest-blog__read-more">
+                    <li>
+                        <a
+                        href="{{ article.url }}"
+                        class="latest-blog__read-more-btn"
+                        aria-label="{{ 'blogs.article.read_more_title' | t: title: article.title }}"
+                        >
+                            {{ 'blogs.article.read_more' | t }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="latest-blog__image">
+                <img class="latest-blog__img" src="{{ article.image | img_url: 'master' }}" alt="{{ article.image.alt }}">
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+{% schema %}
+{
+    "name": "Latest Blog Post",
+    "settings": [
+        {
+            "type": "text",
+            "id": "section_label",
+            "label": "Section label"
+        },
+        {
+            "type": "blog",
+            "id": "blog",
+            "label": "Blog"
+        },
+        {
+            "type": "color",
+            "id": "section_bg_color",
+            "label": "Section background color"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Latest Blog Post",
+            "category": "Blog",
+            "settings": {
+                "section_label": "Latest Blog Post",
+                "blog": "News"
+            }
+        }
+    ]
+}
+{% endschema %} 

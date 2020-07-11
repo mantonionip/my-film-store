@@ -1,0 +1,243 @@
+.header {
+	&__flash-sale {
+		background-color: $color-title;
+		font-family: $font-body;
+		padding: 1.1rem 0 1rem;
+		text-align: center;
+	}
+
+	&__flash-sale-link {
+		color: $color-white;
+		transition: .4s all;
+
+		&:hover {
+			color: $color-hover-3;
+		}
+
+		@include respond-480 {
+			font-size: .8rem;
+		}
+	}
+}
+
+.featured-collection {
+
+	@include respond-768 {
+		margin-top: 5rem;
+	}
+}
+
+.heading {
+	display: flex;
+	justify-content: space-between;
+	padding: 1.5rem 0;
+	z-index: 1;
+
+	&__header {
+		width: 20%;
+	}
+
+	&__text {
+		color: $color-body-text;
+		font-size: .7rem;
+		margin: 0;
+	}
+
+	&__logo-image {
+		display: inline-block;
+		position: relative;
+		width: 100%;
+	}
+
+	&__image {
+		width: 70px;
+
+		@include respond-768 {
+			width: 50px;
+		}
+	}
+
+	&__title {
+		color: $color-body-text;
+		font-family: $font-body-2;
+		font-size: .4rem;
+		font-weight: bold;
+		text-transform: uppercase;
+		letter-spacing: .1rem;
+		display: block;
+		position: absolute;
+		left: 70px;
+		bottom: 23px;
+		width: max-content;
+
+		@include respond-768 {
+			display: none;
+		}
+	}
+}
+
+.logo-image {
+	display: flex;
+}
+
+
+/*------------- Popup Message Style -------------*/
+
+#overlay {
+    position: fixed;
+    z-index: 10000; 
+    top: 0;
+    left: 0;
+    animation: overlay 1s;
+    animation-fill-mode: forwards;
+    width: 100vw;
+    height: 100vh;
+}
+
+.popup {
+
+	&__container {
+		position: fixed;
+		z-index: 10001;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+		background: $color-body;
+		width: 700px; 
+		height: 500px;
+		border-radius: 5px; 
+		padding: 2rem 3rem;
+		animation: popup 1s;
+		animation-fill-mode: forwards;
+		text-align: center;
+	
+		@include respond-768 {
+			width: 600px;
+			height: 500px;
+			padding: 1rem 2rem;
+		}
+	
+		@include respond-630 {
+			width: 500px;
+			height: 550px;
+		}
+	
+		@include respond-590 {
+			width: 380px;
+			height: 500px;
+		}
+	
+		@include respond-400 {
+			width: 300px;
+			// height: 450px;
+		}
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+	}
+
+	&__heading {
+		font-family: $font-body-2;
+		font-size: 1.2rem;
+		letter-spacing: .05rem;
+		text-transform: uppercase;
+
+		@include respond-630 {
+			font-size: 1rem;
+		}
+
+		@include respond-590 {
+			font-size: .8rem;
+		}
+
+		@include respond-400 {
+			font-size: .6rem;
+			margin-top: 0;
+		}
+	}
+
+	&__subheading {
+		font-family: $font-body;
+		font-size: .9rem;
+		line-height: 1.4rem;
+		text-align: justify;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+
+		@include respond-630 {
+			font-size: .8rem;
+		}
+
+		@include respond-590 {
+			font-size: .7rem;
+			line-height: 1rem;
+		}
+	}
+
+	&__link {
+		color: $color-title;
+		transition: .2s all;
+
+		&:hover {
+			color: $color-hover-3;
+		}
+	}
+
+	&__cta {
+		font-family: $font-body-2;
+		font-size: .7rem;
+		font-weight: bolder;
+		color:#fff; 
+		background-color: $color-body-text;
+		border: 2px solid $color-body-text;
+		width: 200px;
+		// height: 100px;
+		padding: .8rem;
+		cursor: pointer;
+		transition: .2s all;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		@include respond-590 {
+			font-size: .6rem;
+			// width: 150px;
+			// padding: .7rem .5rem;
+		}
+
+		@include respond-400 {
+			margin-top: 0;
+		}
+
+		&:hover {
+			background: $color-white;
+			color: $color-body-text;
+		}
+	}
+}
+
+/*------------- Popup Message Animation Style -------------*/
+
+@keyframes overlay {
+  from { background-color: rgba(0, 0, 0, 0); }
+  to { background-color: rgba(0, 0, 0, 0.4); }
+}
+@keyframes popup {
+  from { top: -1000px; }
+  to { top: 10px; }
+}
+@keyframes closeOverlay {
+  from { background-color: rgba(0, 0, 0, 0.4); }
+  to { background-color: rgba(0, 0, 0, 0); }
+}
+@keyframes closePopup {
+  from { top: 10px; }
+  to { top: -2000px; }
+}

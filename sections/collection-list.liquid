@@ -1,0 +1,169 @@
+<section class="section__collection-list section--home wrapper wrapper--flex">
+
+    <div class="collection-list">
+      {% for block in section.blocks %}
+        {%- assign collection = collections[block.settings.collection] -%}
+        <a href="{{ collection.url }}" class="collection-list__container">
+          {% if collection.image != blank or collection.products.first != blank %}
+          {%- assign image_object = collection.image | default: collection.products.first.featured_image -%}
+          <div class="collection-list__image">
+            <img
+            class="collection-list__img"
+            src="{{ collection.image | img_url: 'master' }}"
+            alt="{{ collection.image.alt }}"
+            >
+          </div>
+          {% elsif collection == empty %}
+            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+            {{ 'collection-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+          {% endif %}
+          {% if section.settings.title !=blank %}
+          <div class="collection-list__title">
+            <h2 class="collection-list__title-text">
+                {{ collection.title | escape }}
+            </h2>
+          </div>
+          {% endif %}
+          
+          {% if block.settings.link != blank %}
+          <div class="collection-list__subtitle">
+            <h3>
+                {{ block.settings.link_text }}
+            </h3>  
+          </div> 
+          {% endif %}
+        </a>
+      {% endfor %}
+  
+      {% if section.blocks.size == 0 %}
+        {% include 'no-blocks' %}
+      {% endif %}
+    </div>
+    <div class="collection-list-row">
+      {% for block in section.blocks %}
+        {%- assign collection = collections[block.settings.collection] -%}
+        <a href="{{ collection.url }}" class="collection-list-row__container">
+          {% if collection.image != blank or collection.products.first != blank %}
+          {%- assign image_object = collection.image | default: collection.products.first.featured_image -%}
+          <div class="collection-list-row__image">
+            <img
+            class="collection-list-row__img"
+            src="{{ collection.image | img_url: 'master' }}"
+            alt="{{ collection.image.alt }}"
+            >
+          </div>
+          {% elsif collection == empty %}
+            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+            {{ 'collection-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+          {% endif %}
+          <div class="collection-list-row__text-container">
+            {% if section.settings.title !=blank %}
+            <div class="collection-list-row__title">
+              <h2 class="collection-list-row__title-text">
+                  {{ collection.title | escape }}
+              </h2>
+            </div>
+            {% endif %}
+            
+            {% if block.settings.link != blank %}
+            <div class="collection-list-row__subtitle">
+              <h3>
+                  {{ block.settings.link_text }}
+              </h3>  
+            </div> 
+            {% endif %}
+          </div>
+        </a>
+      {% endfor %}
+  
+      {% if section.blocks.size == 0 %}
+        {% include 'no-blocks' %}
+      {% endif %}
+    </div>
+
+</section>
+
+{% schema %}
+  {
+    "name": "Collection list",
+    "max_blocks": 12,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Collection list"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "collection",
+        "name": "Collection",
+        "settings": [
+          {
+            "type": "text",
+            "id": "main_title",
+            "label": "Main Heading",
+            "default": "Films Collection"
+          },
+          {
+            "label": "Collection",
+            "id": "collection",
+            "type": "collection"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          },
+          {
+            "type": "text",
+            "id": "link_text",
+            "label": "Link Text"
+          },
+          {
+            "label": "Collection Label",
+            "id": "collection_label",
+            "type": "text"
+          },
+          {
+            "type": "header",
+            "content": "Collection Button Settings"
+          },
+          {
+            "label": "Collection link title",
+            "id": "collection_button_title",
+            "type": "text"
+          },
+          {
+            "type": "select",
+            "id": "button_color",
+            "options": [
+              { "value": "white", "label": "White" },
+              { "value": "accent-color", "label": "Accent Color" },
+              { "value": "main-color", "label": "Main Color" }
+            ],
+            "label": "Collection button style"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection list",
+        "category": "Collection",
+        "blocks": [
+          {
+            "type": "collection"
+          },
+          {
+            "type": "collection"
+          },
+          {
+            "type": "collection"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

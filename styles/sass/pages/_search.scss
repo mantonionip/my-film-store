@@ -1,0 +1,218 @@
+.global-search {
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+    padding-bottom: 20px;
+
+    @include respond-480 {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    &__header {
+        height: 300px;
+        max-width: 1536px;
+        display: flex;
+        flex-direction: column;
+        padding: 3rem 5rem 0 5rem;
+        margin-bottom: 3rem;
+
+        @include respond-630 {
+            padding: 0;
+        }
+
+        @include respond-480 {
+            height: 200px;
+            margin-bottom: 1rem;
+            padding: 0 1rem;
+        }
+    }
+
+    &__heading {
+        font-family: $font-body-2;
+        font-size: .8rem;
+        text-transform: uppercase;
+    }
+
+    &__form {
+        position: relative;
+        max-width: 733px;
+        width: 100%;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+
+        @include respond-400 {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__input {
+        border: none;
+        border-radius: 0;
+        -webkit-appearance: none;
+        padding: 1.5rem 3rem 1.5rem 3.5rem;
+        font-family: $font-body-2;
+        font-size: 1.4rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: $color-body-text;
+        width: 100%;
+
+        @include respond-400 {
+            padding: 1rem 3rem;
+            font-size: 1rem;
+        }
+    }
+
+    &__input::placeholder {
+        opacity: .25;
+    }
+
+    &__icon-search {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 30px;
+        left: 25px;
+
+        @include respond-400 {
+            width: 20px;
+            height: 20px;
+            top: 20px;
+        }
+    }
+
+    &__submit {
+        position: absolute;
+        top: 32px;
+        right: 25px;
+        border: none;
+        background: none;
+        cursor: pointer;
+
+        @include respond-400 {
+            top: 23px;
+        }
+    }
+    
+    &__submit svg {
+        width: 30px;
+        height: 30px;
+        opacity: .25;
+        transition: .3s all;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        @include respond-400 {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    &__count {
+        font-family: $font-body-2;
+        font-size: .7rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        max-width: 733px;
+        width: 100%;
+        padding-left: 1.2rem;
+
+        @include respond-480 {
+            padding-left: 0;
+        }
+    }
+
+    &__count-number {
+        font-size: .8rem;
+    }
+
+    &__count-label {
+        color: $color-subtitle;
+    }
+
+    &__result-container {
+        background-color: $color-white;
+        padding: 5rem;
+
+        @include respond-768 {
+            padding: 5rem 2rem;
+        }
+
+        @include respond-480 {
+            padding: 2rem 1.2rem;
+            margin-top: 1.5rem;
+        }
+    }
+
+    &__results {
+        min-height: 500px;
+    }
+
+    &__related-results {
+        font-family: $font-body-2;
+        font-size: .8rem;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+    }
+
+    &__related-results-count {
+        color: $color-subtitle;
+    }
+
+    &__image {
+        max-width: 300px;
+
+        @include respond-480 {
+            max-width: 100%;
+        }
+    }
+
+    &__results-link img {
+        width: 100%
+    }
+
+    &__results-title {
+        margin-top: 1rem;
+    }
+    
+    &__results-title a {
+        color: $color-body-text;
+        font-family: $font-body-2;
+        transition: .5s all;
+
+        &:hover {
+            color: $color-hover;
+        }
+    }
+
+    &__results-description {
+        font-family: $font-body;
+        line-height: 1.4rem;
+        margin-top: 1rem;
+        margin-bottom: 3rem;
+
+        @include respond-480 {
+            font-size: .8rem;
+        }
+    }
+
+    &__no-result {
+        font-family: $font-body;
+    }
+
+    &__no-result a {
+        color: $color-title;
+        transition: .5s all;
+
+        &:hover {
+            color: $color-body-text;
+        }
+    }
+
+    &__pagination {
+        text-align: center;
+    }
+}

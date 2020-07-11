@@ -1,0 +1,49 @@
+<section class="about-us wrapper wrapper-2">
+    <div class="about-us__container">
+        <h2 class="about-us__title">
+            {{ section.settings.about_title }}
+        </h2>
+        <div class="about-us__image">
+            <img 
+            src='{{ section.settings.about_image | img_url: "master" }}' 
+            alt='{{section.settings.about_image.alt}}'
+            class='about-us__img'
+            >
+        </div>
+        <div class="about-us__text">
+            <p class="about-us__paragraph">{{ section.settings.about_content }}</p>
+        </div>
+    </div>
+
+</section>
+
+{% schema %}
+
+{
+    "name": "About",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "about_image",
+            "label": "About Image"
+        },
+        {
+            "type": "text",
+            "id": "about_title",
+            "label": "About Title"
+        },
+        {
+            "type": "textarea",
+            "id": "about_content",
+            "label": "About Content"
+        }
+    ],
+    "presets": [
+        {
+            "name": "About Us",
+            "category": "About"
+        }
+    ]
+}
+
+{% endschema %}

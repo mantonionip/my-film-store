@@ -1,0 +1,13 @@
+{% unless collection.all_tags.size == 0 %}
+    <label for="filter-by" class="filter-by__label">
+        <div class="filters-toolbar__input-wrapper select-group">
+            <select class="filters-toolbar__input hidden" name="FilterTags" id="filter-tags" aria-describedby="a11y-refresh-page-message a11y-selection-message">
+                <option value="{{ collection.url }}">Filter</option>
+                {% for tag in collection.all_tags %}
+                    {%- assign new_url = tag | link_to_tag: tag | split: 'href="' | last | split: '"' | first -%}
+                    <option value="{{ new_url }}"{% if current_tags contains tag %} selected="selected"{% endif %}>{{ tag | upcase }}</option>
+                {% endfor %}
+            </select>
+            {% include 'icon-plus' %}
+    </label>
+{% endunless %}

@@ -1,0 +1,72 @@
+<section class="featured-collection">
+
+  {%- assign collection = collections[section.settings.collection] -%}
+  <div class="featured-collection__details">
+    {% if collection.image %}
+      <img 
+      class="featured-collection__image" 
+      src="{{ collection.image | img_url: 'master' }}"
+      alt="{{ collection.image.alt }}"
+      > 
+    {% endif %}
+    {% if section.settings.title !=blank %}
+      <div class="featured-collection__link-container">
+        <h2 class="featured-collection__title">
+            {{ collection.title | escape }}
+          </h2>
+        <a 
+        href="{{ collection.url }}" 
+        class="featured-collection__link"
+        >
+        <span class="featured-collection__span">Shop Here</span>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+
+</section>
+
+{% schema %}
+  {
+    "name": "Featured collection",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Featured collection"
+      },
+      {
+        "id": "collection",
+        "type": "collection",
+        "label": "Collection"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Link"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Link Text"
+      },
+      {
+        "type": "color",
+        "id": "background_color_1",
+        "label": "Background Color 1"
+      },
+      {
+        "type": "color",
+        "id": "background_color_2",
+        "label": "Background Color 2"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured collection",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}

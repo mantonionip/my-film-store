@@ -1,0 +1,52 @@
+.about-us {
+	&__container {
+		background-color: $color-white;
+		margin: 5rem 0;
+		padding: 5rem;
+
+		@include respond-950 {
+			padding: 5rem 3rem;
+		}
+
+		@include respond-480 {
+			margin: 0;
+			padding: 3rem 2rem 2rem;
+		}
+	}
+
+	&__title {
+		font-family: $font-body-2;
+		font-size: 2rem;
+		text-align: center;
+		text-transform: uppercase;
+
+		@include respond-768 {
+			font-size: 1.4rem;
+		}
+
+		@include respond-480 {
+			font-size: 1rem;
+		}
+	}
+
+	
+
+	&__image {
+		display: block;
+		width: 70%;
+		margin: 0 auto;
+	}
+
+	// &__img {
+	// 	width: 100%;
+	// }
+
+	&__paragraph {
+		font-family: $font-body;
+		line-height: 1.4rem;
+
+		@include respond-480 {
+			font-size: .9rem;
+		}
+	}
+}

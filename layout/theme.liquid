@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <link rel="canonical" href="{{ canonical_url }}">
+        <meta content="width=device-width,initial-scale=1,shrink-to-fit=no" name="viewport">
+
+        {%- if settings.favicon != blank -%}
+            <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+        {%- endif -%}
+
+        <title>{{ page_title }}</title>
+
+        {%- if page_description -%}
+            <meta name="description" content="{{ page_description | escape }}">
+        {%- endif -%}
+
+        {{ content_for_header }}
+        <!-- Header hook for plugins -->
+        {{ 'application.scss.css' | asset_url | stylesheet_tag }}
+        {{ 'style.css' | asset_url | stylesheet_tag }}
+        <script crossorigin="anonymous" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        {{ 'application.js' | asset_url | script_tag }}
+        
+    </head>
+    <body>
+
+        {% section 'header' %}
+
+        <main role="main">
+            {{ content_for_layout }}
+        </main>
+
+        {% section 'footer' %}
+        <script src="https://kit.fontawesome.com/738158de50.js"></script>
+
+        <!-- GREY OUT BACKBGROUND-->
+        <div id="overlay" style="display:none;"></div>
+
+        <!-- CONTAINER-->
+        <div class="popup__container" id="popup" style="display:none;">
+            <div class="popup__info">
+                <h5 class="popup__heading typography">This is not a real film store</h5>
+                <p class="popup__subheading typography">This Shopify Store is a personal tribute to <a href="https://www.criterion.com/" class="popup__link" target="_blank" rel="noopener noreferrer" aria-label="This link takes you to the official website of The Criterion Collection">The Criterion Collection</a>, the acclaimed company dedicated to bringing significant and important films of world cinema to cinephiles since 1984.  For over 20 years, I've been collecting and studying cinematic gems from the Criterion Collection on different formats, from laserdisc to blu-ray to online streaming. <br>All titles in this store are part of my very own film collection.  Please note that this store is NOT for commercial use and none of the items is available for sale.  The copyright of all visual and text contents in this store belong to <a href="https://www.criterion.com/" class="popup__link" target="_blank" rel="noopener noreferrer" aria-label="This link takes you to the official website of The Criterion Collection">The Criterion Collection.</a></p>
+                <button onclick="submitCookie();" class="popup__cta btn">Welcome to My Store</button>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,210 @@
+<section class="section-heading" data-section-id="{{ section.id }}" data-section-type="header">
+  {%- if section.settings.announcement_bar_enabled -%}
+    <div class="header__flash-sale">
+      {%- if section.settings.announcement_bar_home_page_only ==false or template.name == 'index' -%}
+        {%- if section.settings.announcement_bar_link != blank -%}
+          <a 
+          href={{ section.settings.announcement_bar_link }}
+          class="header__flash-sale-link"
+          >
+          {{ section.settings.announcement_bar_text | escape }}
+          </a>
+        {%- else -%}
+          <p>{{ section.settings.announcement_bar_text | escape }}</p>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="heading wrapper wrapper-3">
+    <!-- Header Image -->
+    <header class="heading__header" role="banner">
+      <a href="/" class="heading__logo-image">
+        {% if template.name == 'index' %}
+          <h1 class="heading__text">
+        {% else %}
+        {% endif %}
+        {% if section.settings.logo != blank %}
+          {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
+          <img src="{{ section.settings.logo | img_url: image_size }}"
+          srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+          alt="{{ section.settings.logo.alt | default: shop.name }}"
+          class="heading__image"
+          >
+        {% endif %}
+        <span class="heading__title">{{ shop.name }}</span>
+        {% if template.name == 'index' %}
+          </h1>
+        {% else %}
+        {% endif %}
+      </a>
+    </header>
+  
+    <!-- Menu to the right of the logo -->
+    <div class="navigation">
+      <div class="navigation__controls">
+        <a href="{{ routes.search_url }}" class="controls__icon-search">
+          {% include 'icon-search' %}
+          <span class="visually-hidden">{{ 'layout.navigation.search' | t }}</span>
+        </a>
+  
+        <a href="{{ routes.cart_url }}" class="controls__icon-cart">
+          {% include 'icon-cart' %}
+          <span class="visually-hidden">{{ 'layout.cart.title' | t }}</span>
+          <div id="CartCount" class="">
+          {% if cart.item_count > 0 %}
+            <span class="statusnat"></span>
+          {% endif %}
+          </div>
+        </a>
+      </div>
+      <div class="navigation__main-nav">
+        <ul class="main-nav__list">
+          {% for link in linklists.main-menu-right.links %}
+              <li class="main-nav__list-item">
+                <a href="{{ link.url }}" class="main-nav__link">
+                  {{ link.title }}
+                </a>
+              </li>
+          {% endfor %}
+        </ul>
+      </div>  
+    </div>
+  </div>
+  <!-- Mobile Nav Menu -->
+  <div class="mobile">
+    <nav class="mobile__navigation wrapper wrapper-3">
+      <div class="mobile__logo-container">
+        <a href="/" class="heading__logo-image mobile__logo-image">
+            {% if section.settings.logo != blank %}
+              {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
+              <img src="{{ section.settings.logo | img_url: image_size }}"
+                  srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                  alt="{{ section.settings.logo.alt | default: shop.name }}"
+                  class="heading__image"
+                  >
+              <span class="heading__title">{{ shop.name }}</span>
+            {% endif %}
+          </a>
+      </div>
+      <ul class="mobile__links nav-links">
+        <h2 class="mobile__links-title">Shop the Collection</h2>
+        {% for collection in collections %}
+          <li class="mobile__links-item">
+              <a
+              href="{{ collection.url }}"
+              class="footer__collection-item mobile__links-link"
+              >
+              {{ collection.title }}
+              </a>
+          </li>
+        {% endfor %}
+        <div class="footer__terms mobile__terms">
+          <li>
+            <a
+            href="https://myfilmstore.myshopify.com/pages/contact-us"
+            class="footer__terms-link"
+            >
+            Contact Us
+            </a>
+          </li>
+          {% for link in linklists.footer.links %}
+              <a 
+              href="{{ link.url }}" 
+              class="footer__terms-link mobile__terms-link">{{ link.title }}</a>
+          {% endfor %}
+        </div>
+      </ul>
+      <div class="mobile__icons">
+        <div class="navigation__controls mobile__controls">
+          <a 
+          href="{{ routes.search_url }}" 
+          class="controls__icon-search mobile__icon-search">
+            {% include 'icon-search' %}
+            <span class="visually-hidden">{{ 'layout.navigation.search' | t }}</span>
+          </a>
+    
+          <a 
+          href="{{ routes.cart_url }}" 
+          class="controls__icon-cart mobile__icon-cart">
+            {% include 'icon-cart' %}
+            <span class="visually-hidden">{{ 'layout.cart.title' | t }}</span>
+            <div id="CartCount" class="">
+            {% if cart.item_count > 0 %}
+              <span class="statusnat"></span>
+            {% endif %}
+            </div>
+          </a>
+        </div>
+        <div class="mobile__burger-icon burger">
+          <span class="line1 line"></span>
+          <span class="line2 line"></span>
+          <span class="line3 line"></span>
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>
+  
+  {% schema %}
+    {
+      "name": "Header",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Announcement bar"
+        },
+        {
+          "type": "checkbox",
+          "id": "announcement_bar_enabled",
+          "label": "Show announcement",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "announcement_bar_home_page_only",
+          "label": "Show on home page only",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "announcement_bar_text",
+          "label": "Announcement text",
+          "default": "Announce something here"
+        },
+        {
+          "type": "url",
+          "id": "announcement_bar_link",
+          "label": "Announcement link",
+          "info": "Optional"
+        },
+        {
+          "type": "header",
+          "content": "Header"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo image"
+        },
+        {
+          "type": "range",
+          "id": "logo_max_width",
+          "min": 50,
+          "max": 450,
+          "step": 10,
+          "unit": "px",
+          "label": "Custom logo width",
+          "default": 250
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "default": "main-menu"
+        }
+      ]
+    }
+  {% endschema %}
+  
+  

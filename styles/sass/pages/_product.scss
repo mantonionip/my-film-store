@@ -1,0 +1,265 @@
+.product {
+    background-color: $color-white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 2rem;
+
+    @include respond-768 {
+        flex-direction: column;
+    }
+
+    &__text {
+        font-family: $font-body;
+        flex-basis: 50%;
+        padding: 3.5rem 0 5rem 5rem;
+
+        @include respond-950 {
+            padding: 3rem 0 4rem 3rem;
+        }
+
+        @include respond-768 {
+            padding: 2rem 1.8rem;
+        }
+    }
+
+    &__text-info {
+        padding-bottom: 3rem;
+    }
+
+    &__text-tag {
+        font-family: $font-body-2;
+        font-size: .7rem;
+        font-weight: bold;
+        letter-spacing: .1rem;
+        color: $color-title;
+        padding-bottom: 1.5rem;
+
+        @include respond-768 {
+            font-size: .6rem;
+        }
+    }
+
+    &__text-title {
+        @include respond-768 {
+            font-size: 1.6rem;
+            margin: 0;
+        }
+
+        @include respond-480 {
+            font-size: 1.4rem;
+        }
+    }
+
+    &__text-description {
+        line-height: 1.4rem;
+
+        @include respond-480 {
+            font-size: .9rem;
+        }
+    }
+
+    &__text-description p:first-child:before {
+        content: "";
+        display: inline-block;
+        width: 40px;
+        height: 2px;
+        background: $color-subtitle-2;
+        position: relative;
+        top: -4px;
+        padding: 0;
+        margin: 0 10px 0 0;
+    }
+
+    &__video {
+        margin-bottom: .5rem;
+
+        @include respond-768 {
+            display: none;
+        }
+    }
+
+    &__info {
+        flex-basis: 40%;
+        display: flex;
+        flex-direction: column;
+
+        @include respond-768 {
+            padding: 0 2rem
+        }
+    }
+
+    &__info-form {
+        margin: 2rem;
+
+        @include respond-480 {
+            margin: 2rem 0;
+        }
+    }
+
+    &__info-form-select {
+        display: none;
+    }
+
+    &__info-form-price,
+    &__info-form-button,
+    &__info-form-shopping-button {
+        font-family: $font-body-2;
+        text-transform: uppercase;
+    }
+    
+    &__info-form-price {
+        border: 2px solid $color-hover;
+        font-size: .7rem;
+        display: flex;
+        justify-content: space-between;
+        min-height: 80px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    &__info-form-button,
+    &__info-form-shopping-button {
+        border: none;
+        color: $color-white;
+        font-size: .6rem;
+        font-weight: bold;
+        letter-spacing: .05rem;
+        cursor: pointer;
+        display: block;
+        height: 3rem;
+        width: 100%;
+        transition: .2s all;
+        margin-bottom: .5rem;
+
+        &:hover {
+            background-color: $color-hover-3;
+        }
+    }
+
+    &__info-form-button {
+        background-color: $color-hover;
+    }
+
+    &__info-form-shopping-button {
+        background-color: $color-subtitle-2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            background-color: $color-hover-3;
+        }
+    }
+
+    &__info-form-shopping-link {
+        color: $color-white;
+    }
+}
+
+.related-products {
+    padding: 5rem;
+
+    @include respond-860 {
+        padding: 2rem 1rem;
+    }
+    
+    &__heading {
+        border-bottom: 2px solid $color-white;
+        font-family: $font-body-2;
+        font-size: .8rem;
+        text-transform: uppercase;
+        padding-bottom: 3rem;
+
+        @include respond-630 {
+            border-bottom: none;
+            padding-bottom: 1rem;
+        }
+    }
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px solid $color-white;
+        padding: 2rem 0;
+
+        @include respond-630 {
+            flex-direction: column;
+            border-bottom: none;
+        }
+    }
+
+    &__item {
+        flex-basis: 30%;
+        display: flex;
+        flex-direction: column;
+
+        &:hover .related-products__title {
+            color: $color-title;
+        }
+    }
+
+    &__item-img {
+        
+        @include respond-630 {
+            width: 30%;
+        }
+    }
+
+    &__description {
+        flex-basis: 60%;
+        font-family: $font-body;
+        line-height: 1.4rem;
+    }
+
+    &__title {
+        color: $color-body-text;
+        font-family: $font-body-2;
+        font-size: .8rem;
+        font-weight: bold;
+        transition: .2s all;
+
+        &:hover {
+            color: $color-hover;
+        }
+
+        @include respond-630 {
+            margin-top: 1rem;
+        }
+    }
+
+    &__tag {
+        color: $color-subtitle;
+        font-family: $font-body;
+        font-size: .8rem;
+        font-style: italic;
+        margin-top: .4rem;
+
+        @include respond-630 {
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__text {
+
+        @include respond-480 {
+            font-size: .9rem;
+        }
+    }
+}
+
+figure {
+    margin: 0;
+    padding: 0;
+}
+
+.btn[aria-disabled] {
+    cursor: default;
+    opacity: .5;
+
+    &:hover {
+        background-color: $color-hover;
+        opacity: .5;
+        color: $color-white
+    }
+}

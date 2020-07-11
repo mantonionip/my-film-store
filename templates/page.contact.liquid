@@ -1,0 +1,104 @@
+<div class="contact-us wrapper wrapper-2">
+    <div class="contact-us__container">
+        <div class="contact-us__title">
+            <h1>{{ page.title }}</h1>
+        </div>
+        <div class="contact-us__info">
+            {% form 'contact' %}
+                <div class="contact-us__form-success">
+                    <p class="contact-us__form-success-text">
+                        {% if form.posted_successfully? %}
+                            Thank you for your contact
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="contact-us__form-error">
+                    <p class="contact-us__form-error-text">
+                        {{ form.errors | default_errors }}
+                    </p>
+                </div>
+                <div class="contact-us__form">
+                    <div class="form__name">
+                        <label 
+                        for="{{ formId }}-name"
+                        class="form__name-label" 
+                        >
+                        {{ 'contact.form.name' | t }}
+                        </label>
+                        <input 
+                        type="text"
+                        id="{{ formId }}-name" 
+                        name="contact[{{ 'contact.form.name' | t }}]" 
+                        value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                        class="form__name-input"
+                        >
+                    </div>
+                    <div class="form__email">
+                        <label 
+                        for="{{ formId }}-email"
+                        class="form__email-label" 
+                        >
+                        {{ 'contact.form.email' | t }} <span aria-hidden="true">*</span>
+                        </label>
+                        <input 
+                            type="email"
+                            id="{{ formId }}-email" 
+                            name="contact[email]"
+                            autocorrect="off"
+                            autocapitalize="off"
+                            value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" 
+                            aria-required="true"
+                            class="form__email-input" 
+                            {%- if form.errors contains 'email' -%}
+                                class="form__email-input-error"
+                                aria-invalid="true"
+                                aria-describedby="{{ formId }}-email-error"
+                            {% endif %}
+                        >
+                    </div>
+                    <div class="form__phone">
+                        <label 
+                        for="{{ formId }}-phone"
+                        class="form__phone-label" 
+                        >
+                        {{ 'contact.form.phone' | t }}
+                        </label>
+                        <input 
+                        type="tel"
+                        id="{{ formId }}-phone" 
+                        name="contact[{{ 'contact.form.phone' | t }}]"
+                        pattern="[0-9\-]*"
+                        value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}" 
+                        class="form__phone-input" 
+                        >
+                    </div>
+                    <div class="form__message">
+                        <label 
+                        for="{{ formId }}-message"
+                        class="form__message-label" 
+                        >
+                        {{ 'contact.form.message' | t }}
+                        </label>
+                        <textarea 
+                        rows="10"
+                        id="{{ formId }}-message" 
+                        name="contact[{{ 'contact.form.message' | t }}]" 
+                        class="form__message-textarea"
+                        >{% if form.body %}{{ form.body }}{% endif %}</textarea>
+                    </div>
+                    <div class="form__submit">
+                        <input 
+                        type="submit" 
+                        class="form__submit-input"
+                        value="{{ 'contact.form.submit' | t }}"
+                        >
+                    </div>
+                </div>
+            {% endform %}
+            
+            <div class="contact-us__map">
+                {% section 'embed' %}
+            </div>
+        </div>
+    </div>
+</div>

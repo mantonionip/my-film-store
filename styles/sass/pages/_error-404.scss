@@ -1,0 +1,67 @@
+.error-404 {
+	background-color: $color-white;
+	margin-top: 2rem;
+	margin-bottom: 5rem;
+
+	@include respond-480 {
+		margin-bottom: 0;
+	}
+
+	&__container {
+		padding: 5rem 2rem 10rem;
+	}
+
+	&__info {
+		max-width: 500px;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	&__header {
+		margin-bottom: 2rem;
+	}
+
+	&__text {
+		font-family: $font-body-2;
+		font-size: .8rem;
+		font-weight: 700;
+		margin-bottom: 2rem;
+	}
+
+	&__shopping-button {
+		border: 2px solid $color-body;
+		color: $color-body-text;
+		font-family: $font-body-2;
+		font-size: .6rem;
+		font-weight: bold;
+		text-transform: uppercase;
+		height: 3rem;
+		padding: 1rem 4rem;
+		transition: .2s all;
+
+		&:hover {
+			background-color: $color-hover-3;
+			border: 2px solid $color-hover-3;
+			color: $color-white;
+		}
+
+		@include respond-400 {
+			padding: .8rem 2.5rem;
+		}
+	}
+}
+
+.header {
+	&__h1 {
+		font-family: $font-body-2;
+		font-size: .7rem;
+		letter-spacing: .1rem;
+		margin-bottom: 2rem;
+	}
+
+	&__h2 {
+		font-family: $font-body;
+		font-size: 1.8rem;
+		letter-spacing: .1rem;
+	}
+}

@@ -1,0 +1,59 @@
+<section class="permanent-collection">
+    {%- assign collection = collections[section.settings.collection] -%}
+    <div class="permanent-collection__details">
+        {% if section.settings.title !=blank %}
+            <h2 class="permanent-collection__title">
+                {{ collection.title | escape }}
+            </h2>
+        {% endif %}
+        {% if collection.image %}
+            <img
+            class="permanent-collection__image"
+            src="{{ collection.image | img_url: 'master' }}"
+            alt="{{ collection.image.alt }}"
+            >
+        {% endif %}
+        {% if section.settings.link != blank %}
+            <a href="{{ collection.url }}">
+                <h2 class="permanent-collection__title">
+                    {{ section.settings.link_text }}
+                </h2>
+            </a>
+        {% endif %}
+    </div>
+</section>
+
+{% schema %}
+    {
+        "name": "Permanent Collection",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Heading",
+                "default": "Permanent Collection"
+            },
+            {
+                "type": "collection",
+                "id": "collection",
+                "label": "collection"
+            },
+            {
+                "type": "url",
+                "id": "link",
+                "label": "Link"
+            },
+            {
+                "type": "text",
+                "id": "link_text",
+                "label": "Link Text"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Permanent Collection",
+                "category": "Collection"
+            }
+        ]
+    }
+{% endschema %}

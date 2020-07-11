@@ -1,0 +1,343 @@
+.page-banner {
+	font-family: "Lato", sans-serif;
+    font-size: 1rem;
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+	margin-top: 5rem;
+
+	@include respond-768{
+		font-size: .6rem;
+		margin-top: 1.5rem;
+		margin-bottom: 1rem;
+	}
+	
+	&__title {
+		color: $color-body-text;
+		display: inline-block;
+	}
+}
+
+.all-films-collection {
+	background-color: $color-white;
+	margin-top: 5rem;
+	margin-bottom: 5rem;
+	padding-bottom: 5rem;
+
+	@include respond-768{
+		margin-top: 0;
+	}
+
+	@include respond-768 {
+		margin-bottom: 0;
+		padding-bottom: 0;
+		background-color: $color-body;
+	}
+
+	&__filters {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		justify-content: space-between;
+		padding-top: 2rem;
+
+		@include respond-860 {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		@include respond-768 {
+			align-items: flex-start;
+			padding-top: 0;
+		}
+	}
+
+	&__filters-results {
+
+		@include respond-860 {
+			order: 2;
+			margin-top: 1rem;
+		}
+
+		@include respond-768 {
+			margin-left: 1.9rem;
+		}
+	}
+
+	&__filters-container {
+		display: flex;
+		
+		@include respond-860 {
+			order: 1;
+			width: 100%;
+		}
+		
+		@include respond-768 {
+			flex-direction: column;
+		}
+	}
+
+	&__filters-filter {
+		margin-right: .5rem;
+		width: 300px;
+
+		@include respond-860 {
+			width: 50%;
+			flex-basis: 50%;
+		}
+
+		@include respond-768 {
+			width: 100%;
+			flex-basis: 100%;
+		}
+	}
+
+	&__filters-sort {
+		width: 250px;
+
+		@include respond-860 {
+			width: 50%;
+			flex-basis: 50%;
+		}
+
+		@include respond-768 {
+			width: 100%;
+			flex-basis: 100%;
+		}
+	}
+
+	&__filter-button,
+	&__sort-button {
+		background-color: $color-white;
+		border: 2px solid $color-body;
+
+		@include respond-860 {
+			width: 100%;
+		}
+	}
+
+	&__container {
+		background-color: $color-body;
+		margin-top: 2rem;
+		padding: 3rem 0;
+
+		@include respond-860 {
+			margin-top: 1rem;
+		}
+
+		@include respond-768 {
+			background-color: $color-white;
+			padding: 0 0 1rem;
+		}
+	}
+
+	&__items {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		justify-items: center;
+		padding-left: .2rem;
+		padding-right: .2rem;
+
+		@include respond-1110 {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		@include respond-768 {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		padding: 1.5rem;
+		transition: .5s all;
+
+		&:hover {
+			background-color: $color-white;
+			transform: translateY(-4px);
+
+			@include respond-768 {
+				transform: translateY(0);
+			}
+		}
+
+		&:hover .all-films-collection__item-title {
+			color: $color-title;
+		}
+
+		@include respond-768 {
+			border-bottom: 2px solid $color-body;
+			padding: 0;
+		}
+
+		@include respond-480 {
+			background-color: $color-white;
+			margin-bottom: .2rem;
+		}
+	}
+
+	&__info-container {
+
+		@include respond-768 {
+			display: flex;
+			justify-content: space-between;
+			padding: 1.7rem;
+		}
+	}
+
+	&__item-image-container {
+
+		@include respond-768 {
+			width: 15%;
+			order: 2;
+		}
+
+		@include respond-480 {
+			width: 30%;
+		}
+	}
+
+	&__item-img {
+		margin: 0 0 .8rem;
+		width: 100%;
+
+		@include respond-768 {
+			margin: 0;
+		}
+	}
+
+	&__item-text {
+		display: flex;
+		flex-direction: column;
+		order: 1;
+	}
+
+	&__item-tag {
+		color: $color-subtitle;
+		font-family: $font-body;
+		font-size: .8rem;
+		font-style: italic;
+		text-transform: capitalize;
+		margin-top: .4rem;
+
+		@include respond-768 {
+			font-size: .7rem;
+		}
+	}
+
+	&__item-title,
+	&__item-sold-out {
+		color: $color-body-text;
+		font-family: $font-body-2;
+		font-size: .8rem;
+
+		@include respond-768 {
+			font-size: .7rem;
+		}
+	}
+
+	&__item-title {
+		transition: .5s all;
+	}
+
+	&__item-sold-out {
+		font-family: $font-body;
+		font-size: .7rem;
+		font-weight: bold;
+		text-transform: uppercase;
+		margin-top: .5rem;
+	}
+}
+
+.results {
+	color: $color-subtitle-2;
+	font-family: $font-body-2;
+	font-size: .7rem;
+	text-transform: uppercase;
+
+	&__bold {
+		color: $color-body-text;
+		font-size: .8rem;
+	}
+}
+
+.pagination {
+	&__container {
+		text-align: center;
+		margin: 2rem;
+	}
+
+	&__item {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		vertical-align: top;
+		font-family: $font-body-2;
+		font-size: .8rem;
+		font-weight: bold;
+
+		@include respond-480 {
+			font-size: .6rem;
+		}
+	}
+}
+
+span.prev,
+span.next,
+span.page {
+	width: 50px;
+	height: 50px;
+	margin: .1rem;
+
+	@include respond-480 {
+		width: 35px;
+		height: 35px;
+	}
+}
+
+span.prev a,
+span.next a,
+span.page a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid $color-body-text;
+	color: $color-body-text;
+	width: 100%;
+	height: 100%;
+	transition: .2s all;
+
+	&:hover {
+		background-color: $color-title;
+		color: $color-white;
+	}
+}
+
+span.current {
+	background-color: $color-hover-3;
+	color: $color-white;
+	width: 50px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	@include respond-480 {
+		width: 35px;
+		height: 35px;
+	}
+}
+
+span.deco {
+	width: 50px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	@include respond-480 {
+		width: 35px;
+		height: 35px;
+	}
+}

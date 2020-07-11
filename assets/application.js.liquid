@@ -1,0 +1,82 @@
+// Put your application javascript here
+
+$(function() {
+    $("#sort-by, #filter-tags").on('change', function() {
+        let value = $(this).val();
+        window.location.href = value;
+    });
+
+    const $burger = $('.burger');
+    const $nav = $('.nav-links');
+    const $navLinks = $('.nav-links li', 'h2');
+    
+    // Toggle Nav
+    $burger.on('click', function() {
+        $nav.toggleClass('nav-active');
+
+        // Burger Animation
+        $burger.toggleClass('toggle');
+    });
+});
+
+//document ready state
+//--------------------------------------------------------
+document.addEventListener('DOMContentLoaded', function () {
+    //cookie variables
+    var lookForCookie = document.cookie.indexOf('popup-cookie=Learn More');
+    //popup delay function
+    function time() {
+        setTimeout(displayElements, 1000)
+    }
+    //display popup function
+    function displayElements() {
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("popup").style.display = "block";
+    }
+
+    //don't run popup - cookie variable exists
+    //--------------------------------------------------------
+    if (lookForCookie === -1) {
+        console.log("Cookie Does Not Exist");
+        time();
+    }
+    else if (lookForCookie !== -1) {
+        console.log("Cookie Exists");
+    }
+});
+//CLOSE POPUP
+//--------------------------------------------------------
+function closePOP() {
+    document.getElementById("overlay").style.animation = "closeOverlay 1s";
+    document.getElementById("popup").style.animation = "closePopup 1s";
+
+    setTimeout(displayNone, 1000);
+
+    function displayNone() {
+        document.getElementById("overlay").style.display = "none";
+        document.getElementById("popup").style.display = "none";
+    }
+}
+//submit button & COOKIES
+//--------------------------------------------------------
+function submitCookie() {
+    var now = new Date();
+    var time = now.getTime();
+    time += 3600 * 1000;
+    now.setTime(time);
+    document.cookie = 'popup-cookie=Learn More; expires=' + now.toUTCString() + '; path=/';
+    //window.open('http://.......com/', '_blank');
+    closePOP();
+}
+function dismissCookie() {
+    var now = new Date();
+    var time = now.getTime();
+    time += 3600 * 100;
+    now.setTime(time);
+    document.cookie = 'popup-cookie=Dismiss; expires=' + now.toUTCString() + '; path=/';
+    closePOP();
+}
+
+// ------ Navigation -------//
+
+

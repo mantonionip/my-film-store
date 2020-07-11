@@ -1,0 +1,70 @@
+{% assign break_at = 3 %}
+
+{% assign product_id = product.id %}
+
+{% if product.collections %}
+
+    <div class="related-products wrapper">
+        <h2 class="related-products__heading">{{ section.settings.related_title }}</h2>
+    
+        {% for collection in product.collections %}
+    
+            {% for product in collection.products %}
+    
+                {% unless product.id == product_id %}
+                    <div class="related-products__container">
+                        <a href="{{product.url}}" class="related-products__item">
+                            <img 
+                            class="related-products__item-img"
+                            src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.featured_image.alt }}">
+                        </a>
+                        <div class="related-products__description">
+                            <a href="{{product.url}}" class="related-products__info">
+                                <h3 class="related-products__title">
+                                {{ product.title }}</h3>
+                            </a>
+                            {% for tag in product.tags %}
+                            <p class="related-products__tag">
+                                {{ tag }}
+                            </p>
+                            {% endfor %}
+                            <p class="related-products__text">
+                                {{ product.description }}
+                            </p>
+                        </div>
+                    </div>
+                {% endunless %}
+    
+                {% assign counter = counter | plus: 1 %}
+    
+                {% if counter == break_at %}
+                    {% break %}
+                {% endif %}
+    
+    
+            {% endfor %}
+    
+            {% if counter == break_at %}
+                {% break %}
+            {% endif %}
+    
+        {% endfor %}
+    </div>
+
+{% endif %}
+
+{% schema %}
+{
+    "name": "Related Products",
+    "class": "products-related",
+    "tag": "section",
+    "settings": [
+        {
+            "id": "related_title",
+            "type": "text",
+            "label": "Related Products Title",
+            "default": "Related Products"
+        }
+    ]
+}
+{% endschema %}

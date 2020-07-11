@@ -1,0 +1,163 @@
+{% if cart.item_count > 0 %}
+    <div class="full-cart wrapper wrapper-4">
+        <h1 class="full-cart__title">Your Cart</h1>
+        <form 
+        class="full-cart__form"
+        action="/cart" 
+        method="post" 
+        novalidate
+        >
+            <div class="full-cart__container">
+                <section>
+                    <div class="full-cart__item-count">
+                        <p class="full-cart__item-count-text">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }}</p>
+                    </div>
+                    <div class="full-cart__items">
+                    {% for item in cart.items %}
+                        <div class="full-cart__item">
+                            <div class="full-cart__item-description">
+                                <div class="item__image">
+                                    <a href="{{ item.url | within: collections.all }}">
+                                    <img 
+                                    class="item__img"
+                                    src="{{ item | img_url: 'master' }}" alt="{{ item.title | escape }}"
+                                    >
+                                    </a>
+                                </div>
+                                <div class="item__info">
+                                    <div class="full-cart__item-title">
+                                        <a 
+                                        href="{{ item.url }}"
+                                        class="item__title-name"
+                                        >
+                                        {{ item.product.title }}
+                                        </a>
+                                    </div>
+                                    <div class="item__type">
+                                        <p>
+                                            {{ item.product.type }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="full-cart__item-choices">
+                                <div class="item__qty">
+                                    <label
+                                    class="item__qty-label"
+                                    for="updates_{{ item.key }}"
+                                    aria-label="{{ 'cart.label.quantity' | t }}"
+                                    >{{ 'cart.label.quantity' | t }}:</label>
+                                    <input 
+                                    class="item__qty-input"
+                                    type="text" 
+                                    name="updates[]" 
+                                    id="updates_{{ item.key }}" 
+                                    value="{{ item.quantity }}" 
+                                    min="0"
+                                    >
+                                </div>
+                                <div class="item__update">
+                                    <button
+                                    class="item__button" 
+                                    type="submit" 
+                                    name="update"
+                                    >
+                                    Update
+                                    </button> 
+                                    <span class="item__update-span">|</span>
+                                    <button
+                                    class="item__button" 
+                                    >
+                                        <a 
+                                        class="item__remove-button"
+                                        href="/cart/change?line={{ forloop.index }}&amp;quantity=0"
+                                        >
+                                        Remove
+                                        </a>
+                                    </button>
+                                </div>
+                                <div class="item__price">
+                                    {% if item.original_line_price != item.line_price %}
+                                    {{ item.original_line_price | money }}
+                                    {% endif %}
+                                    {{ item.line_price | money }}
+                                    {% for discount in item.discounts %}
+                                    {{ discount.title }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </section>
+                <div class="full-cart__footer">
+                    <div class="full-cart__help">
+                        <h3 class="help__title">
+                            Need Help?
+                        </h3>
+                        <p class="help__text">This is not a real film store held by Criterion Collection. This is a semi fictional Shopify site for the film collection I own from Criterion Collection. If you want to buy any of these items please check  <a class="help__link" href="https://www.criterion.com/" target="_blank">Criterion Collection</a>'s page or clicking below. 
+                        </p>
+                        <div class="help__button">
+                            <a 
+                            class="help__button-link"
+                            href="mailto:orders@criterion.com"
+                            >
+                            Contact Us
+                            </a>
+                        </div>
+                    </div>
+                    <div class="full-cart__totals">
+                        <div class="full-cart__subtotal">
+                            <h4 class="subtotal__title">Subtotal</h4>
+                            <p class="subtotal__price">{{ cart.total_price | money }}</p>
+                        </div>
+                        <div class="full-cart__price-info">
+                            <div class="full-cart__shipping">
+                                <h4 class="shipping__title">shipping</h4>
+                                <p class="shipping__price">free</p>
+                            </div>
+                            <div class="full-cart__tax">
+                                <h4 class="tax__title">tax</h4>
+                                <p class="tax__price">tbd</p>
+                            </div>
+                            <div class="full-cart__credits">
+                                <h4 class="credits__title">credits</h4>
+                                <p class="credits__price">$0.00</p>
+                            </div>
+                            <div class="full-cart__es-total">
+                                <h4 class="es-total__title">Estimated Total</h4>
+                                <p class="es-total__price">{{ cart.total_price | money }}</p>
+                            </div>
+                        </div>
+                        <div class="full-cart__submit">
+                            <button 
+                            class="submit__checkout-button"
+                            type="submit" 
+                            name="checkout"
+                            >
+                            Proceed to Checkout
+                            </button>
+                            <a 
+                            class="submit__shopping-button"
+                            href="{{ routes.all_products_collection_url }}"
+                            >
+                            Continue Shopping
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% else %}
+    <div class="empty-cart wrapper wrapper-2">
+    <h2 class="empty-cart__title">Your Cart</h2>
+    <p class="empty-cart__text">Your Cart Is Empty</p>
+    <a 
+    href="{{ routes.all_products_collection_url }}"
+    class="empty-cart__link"
+    >
+    Shop The Collection
+    </a>
+    </div>
+{% endif %}

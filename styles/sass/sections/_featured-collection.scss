@@ -1,0 +1,77 @@
+.featured-collection {
+	&__details {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		position: relative;
+	}
+
+	&__link-container {
+		color: $color-title;
+		text-align: center;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+	}
+
+	&__title {
+		font-family: $font-body;
+		font-size: 7rem;
+		font-weight: 700;
+		margin-bottom: 1rem;
+
+		@include respond-860 {
+			font-size: 6rem;
+		}
+
+		@include respond-768 {
+			font-size: 5rem;
+		}
+
+		@include respond-590 {
+			font-size: 4rem;
+		}
+
+		@include respond-480 {
+			font-size: 3.5rem;
+			margin-bottom: .7rem;
+		}
+
+		@include respond-400 {
+			font-size: 2.8rem;
+			margin-bottom: .5rem;
+		}
+	}
+
+	&__span {
+		background-color: $color-body;
+		color: $color-body-text;
+		font-family: $font-body-2;
+		font-size: .7rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		padding: 1rem 7rem;
+		transition: .4s all;
+
+		@include respond-590 {
+			padding: 1rem 5rem;
+		}
+
+		@include respond-480 {
+			font-size: .6rem;
+			padding: .8rem 2rem;
+		}
+
+		@include respond-400 {
+			font-size: .5rem;
+			padding: .5rem 2rem;
+		}
+
+		&:hover {
+			background-color: $color-hover-3;
+			color: $color-white;
+		}
+	}
+}

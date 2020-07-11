@@ -1,0 +1,100 @@
+<section class="image-with-text">
+  <div class="image-with-text__container">
+    <div class="image-with-text__title">
+      {% if section.settings.title != blank %}
+        <h2>{{ section.settings.title | escape }}</h2>
+      {% endif %}
+    </div>
+  
+    {% capture image_layout %}
+      <div class="image-with-text__image">
+        {% if section.settings.image != blank %}
+          <img 
+          class="image-with-text__img" 
+          src="{{ section.settings.image | img_url: 'medium' }}" 
+          alt="{{ section.settings.image.alt }}"
+          >
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+    {% endcapture %}
+  
+    {% if section.settings.layout == 'left' %}
+      {{ image_layout }}
+    {% endif %}
+  
+    <div class="image-with-text__text">
+      {% if section.settings.text != blank %}
+        <div>{{ section.settings.text }}</div>
+      {% endif %}
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        <a href="{{ collection.url }}">
+          {{ section.settings.button_label | escape }}
+        </a>
+      {% endif %}
+    </div>
+  
+    {% if section.settings.layout == 'right' %}
+      {{ image_layout }}
+    {% endif %}
+  </div>
+</section>
+  
+  {% schema %}
+    {
+      "name": "Image with text",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Image alignment",
+          "default": "left",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Image with text"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ],
+      "presets": [
+        {
+          "name": "Image with text",
+          "category": "Image"
+        }
+      ]
+    }
+  {% endschema %}
+  

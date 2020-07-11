@@ -1,0 +1,81 @@
+{% paginate search.results by 10 %}
+  <div class="global-search wrapper wrapper-2">
+    <header class="global-search__header">
+      <h1 class="global-search__heading">Search Criterion</h1>
+      <form
+      class="global-search__form"
+      action="/search"
+      method="get"
+      role="search"
+      >
+        <label for="q" class="visually-hidden">Search</label>
+        <input
+        class="global-search__input"
+        type="search"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="Search"
+        aria-autocomplete="list"
+        aria-owns="predictive-search-results"
+        aria-expanded="false"
+        aria-label="{{ general.search.placeholder' | t  }}"
+        aria-hashpopup="listbox"
+        >
+        <span class="global-search__icon-search">{% include 'icon-search' %}</span>
+        <button
+        class="global-search__submit"
+        type="submit"
+        aria-label="{{ 'general.search.submit' | t }}"
+        >
+        <span class="visually-hidden">Submit</span>
+        {% include 'icon-arrow-right-2' %}
+        </button>
+      </form>
+      <p class="global-search__count">
+        <span class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}:</span>
+        <span class="global-search__count-number">{{ search.results_count }}</span> 
+        <span class="global-search__count-label">{{ search.results_count | | pluralize: 'result', 'results' }}</span>
+      </p>
+    </header>
+  
+    <div class="global-search__result-container">
+      <section class="global-search__results">
+      <h3 class="global-search__related-results">Related Results
+        <span class="global-search__related-results-count">({{ search.results_count }})</span> 
+      </h3>
+        {% if search.performed %}
+          {% for item in search.results %}
+            {% if item.featured_image %}
+              <div class="global-search__image">
+                <a
+                class="global-search__results-link"
+                href="{{ item.url | within: collection }}"
+                title="{{ item.title | escape }}"
+                >
+                  {{ item.featured_image.src | img_url: 'master' | img_tag: item.featured_image.alt }}
+                </a>
+              </div>
+            {% endif %}
+            <h5 class="global-search__results-title">{{ item.title | link_to: item.url }}</h5>
+            {% for tag in item.tags %}
+            <p class="related-products__tag">
+                {{ tag }}
+            </p>
+            {% endfor %}
+            <p class="global-search__results-description">{{ item.content | strip_html | truncatewords: 100 }}</p>
+          {% else %}
+            <p class="global-search__no-result">
+              {{ 'general.search.no_results_html' | t }}
+            </p>
+          {% endfor %}
+        {% endif %}
+      
+        {% if paginate.pages > 1 %}
+        <div class="global-search__pagination">
+          {{ paginate | default_pagination: next: '>', previous: '<' }}
+        </div>
+        {% endif %}
+      {% endpaginate %}
+      </section>
+    </div>
+  </div>

@@ -1,0 +1,183 @@
+.contact-us {
+	background-color: $color-white;
+	margin-top: 2rem;
+	margin-bottom: 5rem;
+
+	@include respond-480 {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	&__container {
+		padding: 7rem;
+
+		@include respond-768 {
+			padding: 3rem;
+		}
+
+		@include respond-768 {
+			padding: 1.5rem;
+		}
+
+		@include respond-480 {
+			padding: 1.5rem 1.5rem 5rem;
+		}
+	}
+
+	&__title {
+		font-family: $font-body-2;
+		font-size: 1.5rem;
+		letter-spacing: .1rem;
+		text-align: center;
+		text-transform: uppercase;
+
+		@include respond-768 {
+			font-size: 1.2rem;
+		}
+
+		@include respond-480 {
+			font-size: .9rem;
+		}
+	}
+
+	&__info {
+		padding: 5rem 0 0;
+
+		@include respond-480 {
+			padding: 0;
+		}
+	}
+
+	&__form-success,
+	&__form-error {
+		text-align: center;
+		margin: 0 auto;
+		margin-bottom: 3rem;
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		flex-basis: calc((100% - 30px) / 2);
+	}
+
+	&__map {
+		flex-basis: calc((100% - 30px) / 2);
+	}
+}
+
+.form {
+	&__name,
+	&__email,
+	&__phone,
+	&__message {
+		font-family: $font-body-2;
+		font-size: .8rem;
+		font-weight: bold;
+		text-transform: uppercase;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__email-label,
+	&__phone-label,
+	&__message-label {
+		padding-top: 1rem;
+	}
+
+	&__name-label,
+	&__email-label,
+	&__phone-label,
+	&__message-label {
+		padding-bottom: .5rem;
+	}
+
+	&__name-input,
+	&__email-input,
+	&__phone-input {
+		border: none;
+		border-bottom: 2px solid $color-subtitle-2;
+		color: $color-body-text;
+		height: 2rem;
+		padding: .2rem;
+
+		&:focus {
+			background-color: $color-body;
+		}
+	}
+
+	&__message-label {
+		padding-bottom: 1rem;
+	}
+
+	&__message-textarea {
+		border: 2px solid $color-subtitle-2;
+		color: $color-body-text;
+		padding: .2rem;
+		resize: none;
+
+		&:focus {
+			background-color: $color-body;
+		}
+	}
+
+	&__submit {
+		margin: 2rem 0 4rem;
+	}
+
+	&__submit-input {
+		background-color: transparent;
+		border: none;
+		border: 2px solid $color-subtitle-2;
+		font-family: $font-body-2;
+		font-size: .6rem;
+		font-weight: bold;
+		letter-spacing: .05rem;
+		text-transform: uppercase;
+		max-width: 150px;
+		padding: 1rem 2rem;
+		cursor: pointer;
+		transition: .2s all;
+
+		&:hover,
+		&:focus {
+			background-color: $color-hover-3;
+			border: 2px solid $color-hover-3;
+			color: $color-white;
+		}
+	}
+}
+
+// Style for the page after submitting info
+.shopify-challenge {
+	&__container {
+		background-color: $color-white;
+		margin-bottom: 5rem;
+		padding: 5rem 2rem;
+	}
+
+	&__message {
+		font-family: $font-body-2;
+	}
+
+	&__button {
+		background-color: transparent;
+		border: none;
+		border: 2px solid $color-body;
+		font-family: $font-body-2;
+		font-size: .6rem;
+		font-weight: bold;
+		letter-spacing: .05rem;
+		text-transform: uppercase;
+		max-width: 150px;
+		padding: 1rem 2rem;
+		cursor: pointer;
+		transition: .2s all;
+
+		&:hover,
+		&:focus {
+			background-color: $color-hover-3;
+			color: $color-white;
+		}
+	}
+}
