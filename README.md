@@ -17,3 +17,7 @@ This is a custom theme development project built from a base theme kit. I made t
 * CSS3/ Sass
 * JavaScript
 * VSCode
+
+
+## Code & Design by:
+[Sam Pilehvarian](https://samdev.codes/)
